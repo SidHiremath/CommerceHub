@@ -1,0 +1,30 @@
+﻿version: '3.8'
+
+services:
+  orderservice:
+    environment:
+      - ProductServiceUrl=http://productservice # Assuming the container name is "productservice"
+    ports:
+      - "6000:8080"  # Map the internal container port 6001 to the host port 6000
+
+  productservice:
+    ports:
+      - "3000:8080"  # Map the internal container port 3002 to the host port 3001
+
+  data-postgres:
+    image: postgres
+    container_name: data-postgres
+    environment:
+      - POSTGRES_USER=sileon
+      - POSTGRES_DB=SmartBnpl
+      - POSTGRES_PASSWORD=Pass@word
+    ports:
+      - "127.0.0.1:5432:5432"
+  
+  data-migrations:
+    container_name: data-migrations
+    depends_on: [ data-postgres ]
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+        
+  

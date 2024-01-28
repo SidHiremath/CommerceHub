@@ -1,0 +1,24 @@
+﻿version: '3.8'
+
+services:
+  orderservice:
+    image: orderservice
+    environment:
+      - ProductServiceUrl=$env{ProductServiceUrl}
+    build:
+      context: .
+      dockerfile: OrderService/Dockerfile
+    depends_on:
+      - productservice
+
+  productservice:
+    image: productservice
+    build:
+      context: .
+      dockerfile: ProductService/Dockerfile
+  
+  data-migrations:
+    image: data-migrations
+    build:
+      context: .
+      dockerfile: Data.Migrations/Dockerfile
