@@ -30,7 +30,7 @@ builder.Logging.AddSerilog(loggerConfiguration);
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options
         .UseNpgsql(
-            "Host=localhost;Port=5432;Database=postgres;Username=sileon;Password=Pass@word")
+            "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=password")
         .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
 builder.Services.AddValidatorsFromAssemblyContaining<OrderCreateValidator>(ServiceLifetime.Transient);

@@ -15,7 +15,7 @@ var host = hostBuilder
     {
         services.AddDbContext<DatabaseContext>(options =>
             options.UseNpgsql(
-                    "Host=localhost;Port=5432;Database=postgres;Username=sileon;Password=Pass@word")
+                    "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=password")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
     }).Build();
 
